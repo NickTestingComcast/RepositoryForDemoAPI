@@ -1,0 +1,8 @@
+site_name: "1 Nick Demo API"
+site_description: "1 Nick Demo API"
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core

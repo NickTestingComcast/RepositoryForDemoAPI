@@ -1,0 +1,25 @@
+jobs:
+  - name: build
+    serial: true
+    plan:
+     - get: appcode
+       params:
+         skip_download: true
+       passed: [build and publish]
+       trigger: true
+     - task: 'install and build code'
+       file: ci/scripts/install-build.yml
+        input_mapping:
+          code: appcode-in
+        output_mapping:
+          code: appcode-out
+
+resources:
+  - name: appcode
+    type: git
+    webhook_token: *webhook_token
+    source:
+      uri: *uri
+      username: *username
+      password: *webhook_token
+      branch: dev
